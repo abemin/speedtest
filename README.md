@@ -1,63 +1,67 @@
-# speedtest
-script to do ookla speedtest and save to influxdb and import to grafana
+# ookla speedtest to influxdb and grafana
 
-script tested on Ubuntu Server 20.04
+##script tested on Ubuntu Server 20.04
 
-#steps
 
-#install speedtest from ookla
+**#install speedtest from ookla**
 
-sudo curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
+> sudo curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
 
-sudo apt install speedtest
+> sudo apt install speedtest
 
-#install influxdb & grafana
+**#install influxdb & grafana**
 
-sudo apt install python3-pip
+> sudo apt install python3-pip
 
-wget -qO- https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+> wget -qO- https://repos.influxdata.com/influxdb.key | sudo apt-key add -
 
-wget -qO- https://packages.grafana.com/gpg.key | sudo apt-key add -
+> wget -qO- https://packages.grafana.com/gpg.key | sudo apt-key add -
 
-echo "deb https://repos.influxdata.com/debian buster stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+> echo "deb https://repos.influxdata.com/debian buster stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
 
-echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+> echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
 
-sudo apt update
+> sudo apt update
 
-sudo apt install influxdb
+> sudo apt install influxdb
 
-sudo systemctl unmask influxdb
+> sudo systemctl unmask influxdb
 
-sudo systemctl enable influxdb
+> sudo systemctl enable influxdb
 
-sudo systemctl start influxdb
+> sudo systemctl start influxdb
 
-sudo apt install grafana
+> sudo apt install grafana
 
-sudo systemctl enable grafana-server
+> sudo systemctl enable grafana-server
 
-sudo systemctl start grafana-server
+> sudo systemctl start grafana-server
 
-#influx database create
+**#influx database create**
 
-CREATE DATABASE db_name
+> influx 
 
-CREATE USER "user_name" WITH PASSWORD 'password_here'
+> CREATE DATABASE db_name
 
-GRANT ALL ON "sb_name" to "user_name"
+> CREATE USER "user_name" WITH PASSWORD 'password_here'
 
-quit
+> GRANT ALL ON "sb_name" to "user_name"
 
-#influxdb library
+> quit
 
-sudo apt install python3-influxdb
+**#influxdb library**
 
-#speedtest script
+> sudo apt install python3-influxdb
 
-speedtest_to_influx.py
+**#speedtest script**
 
-#cron script
+> speedtest_to_influx.py
 
-0 * * * *       /usr/bin/bash /home/administrator/ookla.sh
+**#cron script**
+
+> ookla.sh
+
+###put below in crontab
+
+> 0 * * * *       /usr/bin/bash /home/administrator/ookla.sh
 
