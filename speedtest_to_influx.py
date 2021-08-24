@@ -9,13 +9,13 @@ from datetime import datetime
 # InfluxDB Settings
 DB_ADDRESS = os.environ.get('DB_ADDRESS', 'localhost')
 DB_PORT = os.environ.get('DB_PORT', 8086)
-DB_USER = os.environ.get('DB_USER', 'speedtest_user')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', 'speedtest_password')
-DB_DATABASE = os.environ.get('DB_DATABASE', 'speedtest_db')
+DB_USER = os.environ.get('DB_USER', 'speedtest_user') #change this username
+DB_PASSWORD = os.environ.get('DB_PASSWORD', 'speedtest_password') #change this password
+DB_DATABASE = os.environ.get('DB_DATABASE', 'speedtest_db') #change this dbname
 DB_RETRY_INVERVAL = int(os.environ.get('DB_RETRY_INVERVAL', 60)) # Time before retrying a failed data upload.
 
 # Speedtest Settings
-TEST_INTERVAL = int(os.environ.get('TEST_INTERVAL', 7200))  # Time between tests (in seconds).
+TEST_INTERVAL = int(os.environ.get('TEST_INTERVAL', 3600))  # Time between tests (in seconds).
 TEST_FAIL_INTERVAL = int(os.environ.get('TEST_FAIL_INTERVAL', 60))  # Time before retrying a failed Speedtest (in seconds).
 
 PRINT_DATA = os.environ.get('PRINT_DATA', "False") # Do you want to see the results in your logs? Type must be str. Will be converted to bool.
@@ -101,7 +101,8 @@ def main():
         
     while (1):  # Run a Speedtest and send the results to influxDB indefinitely.
         speedtest = subprocess.run(
-            ["speedtest", "--accept-license", "--accept-gdpr", "-s", "19318",  "-f", "json"], capture_output=True)
+            #["speedtest", "--accept-license", "--accept-gdpr", "-s", "19318",  "-f", "json"], capture_output=True) #enable this one to specify test server #speedtest -L
+            ["speedtest", "--accept-license", "--accept-gdpr", "-f", "json"], capture_output=True)
 
         if speedtest.returncode == 0:  # Speedtest was successful.
             data = format_for_influx(speedtest.stdout)
