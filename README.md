@@ -61,11 +61,11 @@
 
 > ookla.sh
 
-###put below in crontab
+**###put below in crontab**
 
 > 0 * * * *       /usr/bin/bash /home/administrator/ookla.sh
 
-#grafana
+**#grafana**
 
 > add data source influxdb
 > URL http://localhost:8086
@@ -74,7 +74,8 @@
 > Password: password_here
 > HTTP_Method: GET
 
-> import json dashboard
+**#import json dashboard
+**
 
 ###dashboard_1
 ![This is an image](https://github.com/abemin/speedtest/blob/main/dashboard_1.png)
