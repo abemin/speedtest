@@ -50,11 +50,14 @@ GRANT ALL ON "sb_name" to "user_name"
 quit
 
 #influxdb library
+
 sudo apt install python3-influxdb
 
 #speedtest script
+
 speedtest_to_influx.py
 
 #cron script
+
 0 * * * *       /usr/bin/bash /home/administrator/ookla.sh
 
