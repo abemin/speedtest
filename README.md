@@ -65,3 +65,19 @@
 
 > 0 * * * *       /usr/bin/bash /home/administrator/ookla.sh
 
+#grafana
+
+> add data source influxdb
+> URL http://localhost:8086
+> Database: db_name
+> User: user_name
+> Password: password_here
+> HTTP_Method: GET
+
+> import json dashboard
+
+###dashboard_1
+![This is an image](https://github.com/abemin/speedtest/blob/main/dashboard_1.png)
+
+###dashboard_2
+![This is an image](https://github.com/abemin/speedtest/blob/main/dashboard_2.png)
