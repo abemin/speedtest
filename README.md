@@ -68,10 +68,15 @@
 **#grafana**
 
 > add data source influxdb
+
 > URL http://localhost:8086
+
 > Database: db_name
+
 > User: user_name
+
 > Password: password_here
+
 > HTTP_Method: GET
 
 **#import json dashboard
